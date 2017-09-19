@@ -1,6 +1,6 @@
 FROM alpine:3.6
 
-RUN  apk --no-cache --no-progress add ca-certificates git make && \
+RUN  apk --no-cache --no-progress add ca-certificates git make
 
 ENV GOLANG_VERSION 1.9
 
