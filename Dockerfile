@@ -53,10 +53,10 @@ RUN git clone https://github.com/pingcap/tidb.git /go/src/github.com/pingcap/tid
     make ; \
     mv bin/tidb-server /tidb-server ; \
     make clean ; \
-	rm -r /var/cache/apk && \
-	rm -r /usr/share/man && \
+	rm -r /var/cache/apk ; \
+	rm -r /usr/share/man ; \
 	rm -rf /go /usr/local/go ;\
-    apk del .build-deps; \
+    apk del .build-deps
 
 EXPOSE 4000
 
