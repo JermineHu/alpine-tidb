@@ -1,15 +1,15 @@
 FROM alpine:3.6
 
-RUN  apk --no-cache --no-progress add ca-certificates git make
-
 ENV GOLANG_VERSION 1.9
-
 # https://golang.org/issue/14851 (Go 1.8 & 1.7)
 # https://golang.org/issue/17847 (Go 1.7)
 COPY *.patch /go-alpine-patches/
 
 RUN set -eux; \
 	apk add --no-cache --virtual .build-deps \
+	   ca-certificates \
+	    git \
+		make \
 		bash \
 		gcc \
 		musl-dev \
@@ -37,8 +37,6 @@ RUN set -eux; \
 	done; \
 	./make.bash; \
 	rm -rf /go-alpine-patches; \
-	apk del .build-deps; \
-	
 	export PATH="/usr/local/go/bin:$PATH"; \
 	go version
 
@@ -55,9 +53,10 @@ RUN git clone https://github.com/pingcap/tidb.git /go/src/github.com/pingcap/tid
     make ; \
     mv bin/tidb-server /tidb-server ; \
     make clean ; \
-    apk del git make ;\
-	# bash gcc musl-dev openssl go  ; \
-	rm -rf /go /usr/local/go
+	rm -r /var/cache/apk && \
+	rm -r /usr/share/man && \
+	rm -rf /go /usr/local/go ;\
+    apk del .build-deps; \
 
 EXPOSE 4000
 
