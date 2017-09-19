@@ -55,8 +55,7 @@ RUN git clone https://github.com/pingcap/tidb.git /go/src/github.com/pingcap/tid
     make ; \
     mv bin/tidb-server /tidb-server ; \
     make clean ; \
-    apk del git make ;\
-  # bash gcc musl-dev openssl go  ; \
+    apk del git make bash gcc musl-dev openssl go  ; \
 	rm -rf /go /usr/local/go
 
 EXPOSE 4000
