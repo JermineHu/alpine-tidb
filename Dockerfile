@@ -1,7 +1,4 @@
-FROM golang:alpine
-RUN  apk --no-cache --no-progress add git make && \
-      rm -rf /var/cache/apk/*
-
+FROM golang:1.9
 RUN git clone https://github.com/pingcap/tidb.git /go/src/github.com/pingcap/tidb && \
     cd /go/src/github.com/pingcap/tidb && \
     make && \
