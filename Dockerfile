@@ -1,7 +1,6 @@
 FROM alpine:3.6
 
 RUN  apk --no-cache --no-progress add ca-certificates git make && \
-      rm -rf /var/cache/apk/*
 
 ENV GOLANG_VERSION 1.9
 
@@ -61,7 +60,7 @@ RUN git clone https://github.com/pingcap/tidb.git /go/src/github.com/pingcap/tid
     make && \
     mv bin/tidb-server /tidb-server && \
     make clean && \
-    apk del git make && rm -rf /go /usr/local/go
+    apk del git make bash gcc musl-dev openssl go  && rm -rf /go /usr/local/go
 
 EXPOSE 4000
 
