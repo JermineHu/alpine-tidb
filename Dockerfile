@@ -1,5 +1,5 @@
 FROM alpine:3.6
-
+MAINTAINER Jermine <Jermine.hu@qq.com>
 ENV GOLANG_VERSION 1.9
 # https://golang.org/issue/14851 (Go 1.8 & 1.7)
 # https://golang.org/issue/17847 (Go 1.7)
